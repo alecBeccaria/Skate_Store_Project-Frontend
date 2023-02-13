@@ -14,8 +14,7 @@ docker tag performer_lambda:1 249804032116.dkr.ecr.us-west-2.amazonaws.com/sen31
 
 //  Amazon access key and Secret access key
 
-AKIATUKL3BB2AVTY77HM
-mAhwzH7n3qOx7PGYf/4tMmrZ7yuAOUEPIj3fFEj1
+
 
 //  Set up access and login
 aws configure
