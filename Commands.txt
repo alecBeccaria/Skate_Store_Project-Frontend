@@ -16,6 +16,7 @@ docker tag performer_lambda:1 249804032116.dkr.ecr.us-west-2.amazonaws.com/sen31
 
 
 
+
 //  Set up access and login
 aws configure
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 249804032116.dkr.ecr.us-west-2.amazonaws.com/sen310
