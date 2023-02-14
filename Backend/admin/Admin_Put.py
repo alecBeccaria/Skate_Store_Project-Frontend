@@ -7,9 +7,9 @@ region_name = getenv("APP_REGION")
 
 def lambda_handler(event, context):
     
-    username = event['username']
-    password = event['password']
-    email = event['email']
+    username = event['params']['path']['username']
+    password = event['body-json']['password']
+    email = event['body-json']['email']
 
     key = {
         'username': username

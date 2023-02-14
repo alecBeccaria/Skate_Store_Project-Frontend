@@ -12,7 +12,7 @@ def lambda_handler(event, context):
 
 def read(event):
     # gets Database resource
-    username = event['username']
+    username = event['params']['path']['username']
     
     
     dynamodb = boto3.resource('dynamodb', region_name=region_name)

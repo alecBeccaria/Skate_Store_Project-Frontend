@@ -3,13 +3,13 @@ services:
   Admin_Get:
     build:
       context: .
-      dockerfile: Dockerfiles/Dockerfile_POST
+      dockerfile: Dockerfiles/Dockerfile_GET
     image: admin_get:1.0
 
   Admin_Post:
     build:
       context: .
-      dockerfile: Dockerfiles/Dockerfile_GET
+      dockerfile: Dockerfiles/Dockerfile_POST
     image: admin_post:1.0
 
   Admin_Delete:

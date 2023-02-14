@@ -11,7 +11,7 @@ admins_table = boto3.resource(
 
 def lambda_handler(event, context):
     Admin = read_event(event)
-
+    
     admins_table.put_item(Item=Admin)
     return Admin
 
