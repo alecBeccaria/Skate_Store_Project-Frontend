@@ -91,6 +91,7 @@ body {
 #navbar li {
   list-style: none;
   padding: 0 20px;
+  cursor: pointer;
 }
 
 #navbar li a {
@@ -157,6 +158,7 @@ body {
 }
 
 .button {
+  cursor: pointer;
   position: relative;
   z-index: 0;
   width: 240px;
@@ -407,4 +409,117 @@ body {
   backdrop-filter: blur(11.8px);
   -webkit-backdrop-filter: blur(11.8px);
   border: 1px solid rgba(75, 200, 255, 0.3);
+}
+
+/*Proudct Setup 1*/
+
+#product1 {
+  text-align: center;
+}
+
+#product1 .pro-contain {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  flex-wrap: wrap;
+}
+
+#product1 .pro {
+  width: 23%;
+  min-width: 250px;
+  padding: 10px 12px;
+  border: 3px solid black;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.2);
+  margin: 15px 0;
+  transition: 0.2s ease;
+  position: relative;
+}
+
+#product1 .pro:hover {
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.7);
+}
+
+#product1 .pro img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+#product1 .pro .desc i {
+  font-size: 20px;
+  color: #3b14ce;
+}
+
+#product1 .pro .desc h4 {
+  font-size: 15px;
+  font-weight: 700;
+  padding-top: 7px;
+}
+
+#product1 .pro .cart {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: aqua;
+  color: #222;
+  border: 1px solid;
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+}
+
+/*Single Product Page*/
+#prodetails .single-pro-img {
+  width: 40%;
+  margin-right: 50px;
+  height: auto;
+  border: rgba(0, 0, 0, 0.1) 1px solid;
+}
+
+#prodetails {
+  display: flex;
+  margin-top: 20px;
+}
+
+#prodetails .single-pro-detail {
+  width: 50%;
+  padding-top: 30px;
+}
+
+#prodetails .single-pro-detail h6 {
+  padding: 40px 0 20px 0;
+  font-size: 20px;
+}
+#prodetails .single-pro-detail h4 {
+  padding: 40px 0 20px 0;
+  font-size: 50px;
+}
+
+#prodetails .single-pro-detail select {
+  display: block;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+#prodetails .single-pro-detail input {
+  width: 45px;
+  height: 37px;
+  padding-left: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+#prodetails .single-pro-detail span {
+  line-height: 25px;
+}
+
+/* ATC BUTTON */
+.container2 {
+  --line_color: rgb(0, 0, 0);
+  --back_color: #0d7de2;
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
