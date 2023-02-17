@@ -5,22 +5,14 @@ region_name = getenv("APP_REGION")
 
 
 def lambda_handler(event, context):
-    print(event)
-    response = read(event)
+    response = read()
     return response
 
 
-def read(event):
+def read():
     # gets Database resource
-    username = event['params']['path']['item_id']
-
     dynamodb = boto3.resource('dynamodb', region_name=region_name)
     items_table = dynamodb.Table('Items')
 
-    key = {
-        'username': username
-    }
-
-    Db_Item = items_table.get_item(Key=key)
-    Item = Db_Item['Item']
-    return Item
+    response = items_table.scan()
+    return response['Items']
