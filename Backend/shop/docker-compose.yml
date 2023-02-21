@@ -1,10 +1,10 @@
 version: '3.9'
 services:
-  Item_Get:
-    build:
-      context: .
-      dockerfile: Dockerfiles/Dockerfile_GET
-    image: item_get:1.0
+  # Item_Get:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfiles/Dockerfile_GET
+  #   image: item_get:1.0
 
   # Item_Get_All:
   #   build:
