@@ -1,6 +1,6 @@
 import boto3
 from os import getenv
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Attr
 
 region_name = getenv("APP_REGION")
 
@@ -17,6 +17,6 @@ def read(event):
     dynamodb = boto3.resource('dynamodb', region_name=region_name)
     items_table = dynamodb.Table('Items')
 
-    Db_Category_Items = items_table.query(KeyConditionExpression=Key('category').eq(category))
+    Db_Category_Items = items_table.query(AttributeConditionExpression=Attr('category').eq(category))
     Category_Items = Db_Category_Items['Item']
     return Category_Items

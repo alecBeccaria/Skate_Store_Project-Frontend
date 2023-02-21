@@ -12,13 +12,13 @@ def lambda_handler(event, context):
 
 def read(event):
     # gets Database resource
-    username = event['params']['path']['item_id']
+    item_id = event['params']['path']['item_id']
 
     dynamodb = boto3.resource('dynamodb', region_name=region_name)
     items_table = dynamodb.Table('Items')
 
     key = {
-        'username': username
+        'id': item_id
     }
 
     Db_Item = items_table.get_item(Key=key)

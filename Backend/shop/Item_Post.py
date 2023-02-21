@@ -23,8 +23,8 @@ def read_event(event):
     category = event['category']
     price = event['price']
     description = event['description']
-    manufacturer = ['manufacturer']
-    image = ['image']
+    manufacturer = event['manufacturer']
+    image = event['image']
 
     Item = {
         "id": id,
