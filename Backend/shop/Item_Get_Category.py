@@ -1,6 +1,6 @@
 import boto3
 from os import getenv
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Attr
 
 region_name = getenv("APP_REGION")
 
@@ -18,6 +18,8 @@ def read(event):
     items_table = dynamodb.Table('Items')
 
 
-    Db_Category_Items = items_table.query(KeyConditionExpression=Key('category').eq(category))
-    Category_Items = Db_Category_Items['Item']
+    Db_Category_Items = items_table.scan(
+        FilterExpression=Attr("category").eq(category)
+    )
+    Category_Items = Db_Category_Items['Items']
     return Category_Items
