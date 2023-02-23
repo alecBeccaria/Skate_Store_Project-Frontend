@@ -1,9 +1,9 @@
 #! /bin/bash
 # For Single image push
-# docker build -t item_get_category:1.0 .
+# docker build -t item_get_search:1.0 .
 
 # To Test local image
-# docker run -d -p 9001:8080 --name performer_lambda performer_lambda:1
+# docker run -d -p 9001:8080 --name item_get_search item_get_search:1.0
 
 
 
