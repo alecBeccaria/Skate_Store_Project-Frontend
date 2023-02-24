@@ -10,15 +10,15 @@ const saltyHash = (password) => {
     return hash;
 }
 
-const compareHash = (password, dbHash) => {
-    const clientHash = saltyHash(password);
-
-    for (let i = 0; i < dbHash.length; i++) {
-        const letter = clientHash[i];
-        if (letter != dbHash[i]) {
-            return false;
-        }
-    }
-    return true;
+const compareHash = (password, compareHash) => {
+    password = saltyHash(password);
+    return password === compareHash;
 }
 
+var password = "password";
+var compare = password;
+
+compare = saltyHash(compare);
+
+console.log(password, compare);
+console.log(compareHash(password, compare));
