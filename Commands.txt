@@ -1,0 +1,38 @@
+//  build the lambda
+docker build -t list_update:1 .
+
+//  deploy the lambda to docker
+docker run -d -p 9001:8080 --name performer_lambda performer_lambda:1
+
+
+
+//  test the lambda within docker
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d "{\"msg_in\":\"this is the message\"}"
+
+//  duplicate the image for amazon deployment
+docker tag performer_lambda:1 249804032116.dkr.ecr.us-west-2.amazonaws.com/sen310:Performer_PUT
+
+//  Amazon access key and Secret access key
+
+
+
+
+//  Set up access and login
+aws configure
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 249804032116.dkr.ecr.us-west-2.amazonaws.com/sen310
+
+//  Test repo
+curl -XPOST "https://249804032116.dkr.ecr.us-west-2.amazonaws.com/dotnet_lambda" -d "{\"msg_in\":\"this is the message\"}"
+
+//Push to AWS
+docker push 249804032116.dkr.ecr.us-west-2.amazonaws.com/sen310:Performer_PUT
+
+
+//////////////////
+c# stuff
+dotnet new -i Amazon.Lambda.Templates
+
+dotnet build --configuration Release
+
+// deploy to lambda, but does not work as a container
+dotnet lambda deploy-function dotnet_lambda 
