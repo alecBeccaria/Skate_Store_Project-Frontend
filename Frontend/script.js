@@ -15,6 +15,7 @@ const compareHash = (password, compareHash) => {
     return password === compareHash;
 }
 
+// Just testing stuff to prove it works
 var password = "password";
 var compare = password;
 
