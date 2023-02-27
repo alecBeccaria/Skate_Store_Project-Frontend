@@ -83,11 +83,10 @@ const fetchData = async (url, method, data = { Authorization: '', body: {} }) =>
     var request = {
         mode: 'cors',
         method: method,
-        withCredentials: true,
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': data.Authorization
+            'Authorization': 'Basic ' + data.Authorization
             //'Access-Control-Allow-Origin':'*',
             //'Access-Control-Allow-Headers': 'Content-Type',
             //'Access-Control-Allow-Methods': method
@@ -148,5 +147,5 @@ console.log(compareHash(password, compare));
 
 //Methods have to be full caps!
 
-const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/alec', 'GET', {Authorization: 'Basic YWxlYzpwYXNzd29yZA==', body: {}})
+const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/alec', 'GET', {Authorization: 'YWxlYzpwYXNzd29yZA==', body: {}})
 console.log(response);
