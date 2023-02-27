@@ -83,8 +83,8 @@ const fetchData = async (url, method, data = { Authorization: '', body: {} }) =>
     var request = {
         mode: 'cors',
         method: method,
-        withCredentials: true,
-        credentials: 'include',
+        //withCredentials: true,
+        //credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': data.Authorization
