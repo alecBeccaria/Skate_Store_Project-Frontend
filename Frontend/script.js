@@ -21,15 +21,18 @@ const fetchData = async (url, method, data = { Authorization: '', body: {} }) =>
 
     //Headers to be sent in request
     var request = {
-        Mode: 'cors',
-        Method: method,
-        Headers: {
-            'Accept': 'application/json',
+        mode: 'cors',
+        method: method,
+        withCredentials: true,
+        credentials: 'include',
+        headers: {
             'Content-Type': 'application/json',
+            'Authorization': data.Authorization
             //'Access-Control-Allow-Origin':'*',
             //'Access-Control-Allow-Headers': 'Content-Type',
             //'Access-Control-Allow-Methods': method
         }
+        
     }
     
     if (method !== 'GET') {
@@ -37,9 +40,9 @@ const fetchData = async (url, method, data = { Authorization: '', body: {} }) =>
     }
 
     //Checks to see if data object had Authorization included and if true adds auth header.
-    if (data['Authorization']) {
-        request.Authorization = data['Authorization'];
-    }
+    // if (data['Authorization']) {
+    //     request.Authorization = data['Authorization'];
+    // }
 
     //request = JSON.stringify(request);
     console.log(request);
@@ -85,5 +88,5 @@ console.log(compareHash(password, compare));
 
 //Methods have to be full caps!
 
-const response = fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/alec', 'GET', {Authorization: 'Basic YWxlYzpwYXNzd29yZA==', body: {}})
+const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/alec', 'GET', {Authorization: 'Basic YWxlYzpwYXNzd29yZA==', body: {}})
 console.log(response);
