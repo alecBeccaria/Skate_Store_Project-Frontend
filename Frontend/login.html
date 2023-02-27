@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solo Leveling</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <section id="header">
+    <a href="#"><img src="img/sll.png" class="logo" alt="" /></a>
+
+    <div>
+      <ul id="navbar">
+        <li>
+          <a  onclick="window.location.href='index.html';">
+            Home
+          </a>
+        </li>
+        <li>
+          <a onclick="window.location.href='shop.html';">
+            Shop
+          </a>
+        </li>
+        <li>
+          <a onclick="window.location.href='skateboarding.html';">
+            Skateboarding
+          </a>
+        </li>
+        <li>
+          <a onclick="window.location.href='clothing.html';">Clothing</a>
+        </li>
+        <li>
+          <a onclick="window.location.href='accessories.html';">
+            Accessories
+          </a>
+        </li>
+        <li><a onclick="window.location.href='cart.html';">Cart</a></li>
+        <li><a class="active" onclick="window.location.href='login.html';">Login</a></li>
+      </ul>
+    </div>
+  </section>
+</html>
+
+<body id="lbody">
+    <video id="videobg" autoplay muted loop>
+        <source src="img/Dan.mp4" type="video/mp4" />
+      </video>
+    <header id="lheader">
+        <h1>Login</h1>
+    </header>
+    <main>
+      
+        <form id="login_form" class="form_class" action="index.html" method="post">
+            <div class="form_div">
+                <label>Email:</label>
+                <input class="field_class" name="login_txt" type="text" placeholder="Enter Email" autofocus>
+                <label>Password:</label>
+                <input id="pass" class="field_class" name="password_txt" type="password" placeholder="Enter Pass">
+                <button class="submit_class" type="submit" form="login_form" onclick="return validarLogin()">Enter</button>
+            </div>  
+        </form>
+        <div class="info_div">
+           <button class="createbutton" onclick="window.location.href='create.html';">Create Account</button>
+        </div>
+        <section id="promo2">
+
+        </section>
+    </main>
+
+
+    <seciton id="newsletter">
+        <div class="newstext">
+          <h4>Sign up for our Newsletter</h4>
+          <p>
+            Get the latest news and
+            <span>special offers</span>
+            on our products
+          </p>
+          <div class="form">
+            <input type="text" placeholder="Enter your email" />
+            <button>Subscribe</button>
+          </div>
+        </div>
+      </seciton>
+      <script src="script.js" type="module"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/sha256.js"></script>
+    </body>

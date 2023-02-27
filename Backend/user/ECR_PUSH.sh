@@ -1,6 +1,6 @@
 #! /bin/bash
 # For Single image push
-# docker build -t user_put:1.0 .
+# docker build -t user_get:1.0 .
 
 # To Test local image
 # docker run -d -p 9001:8080 --name performer_lambda performer_lambda:1
