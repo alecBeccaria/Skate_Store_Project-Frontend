@@ -137,17 +137,17 @@ const compareHash = (password, compareHash) => {
 }
 
 // Just testing stuff to prove it works
-var password = "password";
-var compare = password;
+// var password = "password";
+// var compare = password;
 
-compare = saltyHash(compare);
+// compare = saltyHash(compare);
 
-console.log(password, compare);
-console.log(compareHash(password, compare));
+// console.log(password, compare);
+// console.log(compareHash(password, compare));
 
 //Methods have to be full caps!
 
-console.log(response);
+
 var response;
 const test_get = async () => {
     response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/alec', 'GET', { Authorization: 'YWxlYzpwYXNzd29yZA==', body: {} })
@@ -171,6 +171,7 @@ const test_put = async () => {
     console.log(response);
 }
 
+test_get()
 
 
 
