@@ -4,6 +4,7 @@ const path = require('path');
 
 
 const app = express();
+const PORT = process.env.PORT || 3030;
 
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
@@ -30,4 +31,6 @@ app.get('/test', (req, res) => {
     res.render('test');
 });
 
-app.listen(3000, () => console.log('Example app is listening on port 3000.'));
+app.listen(PORT, () => {
+    console.log(`server started on port ${PORT}`);
+});
