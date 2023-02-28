@@ -163,7 +163,7 @@ const user_put = async (user, auth) => {
 }
 
 
-var response = await user_get('potato', 'cG90YXRvOmVhdGFzcw==');
+var response = user_get('potato', 'cG90YXRvOmVhdGFzcw==');
 console.log(response);
 
 
