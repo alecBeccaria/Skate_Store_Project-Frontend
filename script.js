@@ -6,7 +6,7 @@ const product1 = {
 };
 const product2 = {
     name: "Powell Peralta Ripper Skateboard Deck",
-    price: '$' +43.00,
+    price: '$' + 43.00,
     image: 'img/products/powellboard.png/'
 };
 const product3 = {
@@ -91,9 +91,9 @@ const fetchData = async (url, method, data = { Authorization: '', body: {} }) =>
             //'Access-Control-Allow-Headers': 'Content-Type',
             //'Access-Control-Allow-Methods': method
         }
-        
+
     }
-    
+
     if (method !== 'GET') {
         request.Body = JSON.stringify(data.body);
     }
@@ -147,5 +147,29 @@ console.log(compareHash(password, compare));
 
 //Methods have to be full caps!
 
-const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/alec', 'GET', {Authorization: 'YWxlYzpwYXNzd29yZA==', body: {}})
 console.log(response);
+var response;
+const test_get = async () => {
+    response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/alec', 'GET', { Authorization: 'YWxlYzpwYXNzd29yZA==', body: {} })
+    console.log(response);
+}
+
+const test_delete = async () => {
+    response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/alec', 'DELETE', { Authorization: 'YWxlYzpwYXNzd29yZA==', body: {} })
+    console.log(response);
+}
+
+const test_put = async () => {
+    response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/alec', 'PUT', {
+        Authorization: 'YWxlYzpwYXNzd29yZA==', body: {
+            "password": "password",
+            "username": "alec",
+            "email": "test",
+            "cart": ['test','test1']
+        }
+    })
+    console.log(response);
+}
+
+
+
