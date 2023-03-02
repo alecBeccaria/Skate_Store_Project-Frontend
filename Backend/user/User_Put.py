@@ -1,12 +1,10 @@
 import boto3
-from boto3.dynamodb.conditions import Attr
 from os import getenv
 
 region_name = getenv("APP_REGION")
 
 
 def lambda_handler(event, context):
-    
     username = event['params']['path']['username']
     password = event['body-json']['password']
     email = event['body-json']['email']

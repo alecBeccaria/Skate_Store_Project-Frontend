@@ -23,11 +23,5 @@ def read(event):
     admin = Item["Item"]
     return {
         'statusCode': 200,
-        'headers': {
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET,OPTIONS',
-            'Access-Control-Allow-Credentials': True
-        },
         'body': admin
     }
