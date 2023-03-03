@@ -1,36 +1,7 @@
-doctype html
+<!DOCTYPE html>
 html(lang='en')
-    head
-        meta(charset='UTF-8')
-        meta(http-equiv='X-UA-Compatible' content='IE=edge')
-        meta(name='viewport' content='width=device-width, initial-scale=1.0')
-        title Solo Leveling
-        link(rel='icon' type='image/x-icon' href='/img/favicon.ico')
-        link(rel='stylesheet' href='/style.css' type='text/css')
-    body
-        section#header
-            a(href='#')
-                img.logo(src='img/sll.png' alt='')
-            div
-                ul#navbar
-                    li
-                        a.active(onclick="window.location.href='index.html';")
-                            | Home
-                    li
-                        a(onclick="window.location.href='shop.html';")
-                            | Shop
-                    li
-                        a(onclick="window.location.href='skateboarding.html';")
-                            | Skateboarding
-                    li
-                        a(onclick="window.location.href='clothing.html';") Clothing
-                    li
-                        a(onclick="window.location.href='accessories.html';")
-                            | Accessories
-                    li
-                        a(onclick="window.location.href='cart.html';") Cart
-                    li
-                        a(onclick="window.location.href='login.html';") Login
+    extends layouts/template.jade
+    block template
         video#videobg(autoplay='' muted='' loop='')
             source(src='img/tyshawn.mp4' type='video/mp4')
         section#promo
@@ -39,7 +10,7 @@ html(lang='en')
             h1 get 50% off on a deck when you buy a complete
             p only valid for shop decks.
             .container
-                a.button(onclick="window.location.href='skateboarding.html';")
+                a.button(href="/skateboard")
                     .button__line
                     .button__line
                     span.button__text Shop Skateboarding
