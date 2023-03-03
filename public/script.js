@@ -75,7 +75,7 @@ function addToCart() {
 }
 
 //Fetch function
-const fetchData = async (url, method, data = { authorization: '', body: {} }) => {
+const fetchData = async (url, method, data = { Authorization: '', body: {} }) => {
     if (!url) return 'Error, url was not provided!';
     if (!method) return 'Error, request method was not provided!';
 
@@ -85,11 +85,7 @@ const fetchData = async (url, method, data = { authorization: '', body: {} }) =>
         method: method,
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic ' + data.authorization
-            //'Access-Control-Allow-Origin':'*',
-            //'Access-Control-Allow-Headers': 'Content-Type',
-            //'Access-Control-Allow-Methods': method
+            'Content-Type': 'application/json'
         }
 
     }
@@ -99,8 +95,8 @@ const fetchData = async (url, method, data = { authorization: '', body: {} }) =>
     }
 
     // Checks to see if data object had Authorization included and if true adds auth header.
-    if (data['authorization']) {
-        request.authorization = data['authorization'];
+    if (data['Authorization']) {
+        request.headers.Authorization = data['Authorization'];
     }
 
     //request = JSON.stringify(request);
@@ -139,20 +135,20 @@ const compareHash = (password, compareHash) => {
 
 var response;
 const user_get = async (user, auth) => {
-    response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${user}`, 'GET', { authorization: auth, body: {} })
+    response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${user}`, 'GET', { Authorization: auth, body: {} })
     console.log(response);
     return response;
 }
 
 const user_delete = async (user, auth) => {
-    response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${user}`, 'DELETE', { authorization: auth, body: {} })
+    response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${user}`, 'DELETE', { Authorization: auth, body: {} })
     console.log(response);
     return response;
 }
 
 const user_put = async (user, auth) => {
     response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${user}`, 'PUT', {
-        authorization: auth, body: {
+        Authorization: auth, body: {
             "password": "password",
             "email": "test",
             "cart": ['test', 'test1']
