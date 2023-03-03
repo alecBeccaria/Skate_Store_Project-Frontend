@@ -99,7 +99,7 @@ const fetchData = async (url, method, data = { Authorization: '', body: {} }) =>
         request.headers.Authorization = "Basic " + data['Authorization'];
     }
 
-    request = JSON.stringify(request);
+    //request = JSON.stringify(request);
     console.log(request);
     //This is where we actually call the server.
     try {
@@ -133,7 +133,7 @@ const compareHash = (password, compareHash) => {
 }
 
 
-var response;
+
 const user_get = async (user, auth) => {
     response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${user}`, 'GET', { Authorization: auth, body: {} })
     console.log(response);
@@ -159,7 +159,7 @@ const user_put = async (user, auth) => {
 }
 
 
-var response = user_get('potato', 'cG90YXRvOmVhdGFzcw==');
+var response = await user_get('potato', 'cG90YXRvOmVhdGFzcw==');
 console.log(response);
 
 
