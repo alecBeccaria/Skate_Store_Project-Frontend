@@ -3,6 +3,7 @@ const router = express.Router();
 const auth = require('./auth');
 const bodyParser = require('body-parser');
 const data = require('./data');
+const { saltyHash } = require('./auth');
 
 
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -45,10 +46,14 @@ router.get('/signup', (req, res) => {
 //Post routes
 router.post('/login', (req, res) => {
     let username = req.body.username;
-    let password = req.body.password;
-    console.log(auth.base64EncodeLogin(username, password));
+    let password = saltyHash(req.body.password);
+    let basic_auth = auth.BasicAuth(username, password);
+
+    data.user_get(username, basic_auth);
+
     res.redirect('/login');
 });
+
 router.post('/signup', (req, res) => {
     let user = {
         username: req.body.username,
@@ -60,7 +65,7 @@ router.post('/signup', (req, res) => {
     console.log(user);
     data.user_post(user);
     
-    res.redirect('/signup');
+    res.redirect('/login');
 })
 
 module.exports = router;
