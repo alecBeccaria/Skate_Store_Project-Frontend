@@ -99,7 +99,7 @@ const fetchData = async (url, method, data = { Authorization: '', body: {} }) =>
         request.headers.Authorization = "Basic " + data['Authorization'];
     }
 
-    //request = JSON.stringify(request);
+    request = JSON.stringify(request);
     console.log(request);
     //This is where we actually call the server.
     try {
