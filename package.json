@@ -1,12 +1,12 @@
 {
   "scripts": {
-    "start": "SALT=:m-vUM#BUv/F*urK nodemon server.js"
+    "start": "SALT=:m-vUM#BUv/F*urK nodemon server.js",
+    "start_win": "nodemon server.js"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
     "express": "^4.18.2",
     "jade": "^1.11.0",
-    "nodemon": "^2.0.20",
-    "serve-index": "^1.9.1"
+    "nodemon": "^2.0.20"
   }
 }

@@ -1,5 +1,6 @@
 const CryptoJS = require('crypto-js');
 
+//console.log(process.env.SALT);
 
 const saltyHash = (password) => {
     const salt = process.env.SALT; //The salt should be hidden but idk how
