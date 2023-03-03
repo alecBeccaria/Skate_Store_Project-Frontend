@@ -99,7 +99,7 @@ const fetchData = async (url, method, data = { Authorization: '', body: {} }) =>
         request.headers.Authorization = "Basic " + data['Authorization'];
     }
 
-    //request = JSON.stringify(request);
+    request.headers = JSON.stringify(request.headers);
     console.log(request);
     //This is where we actually call the server.
     try {
@@ -159,7 +159,7 @@ const user_put = async (user, auth) => {
 }
 
 
-var response = await user_get('potato', 'cG90YXRvOmVhdGFzcw==');
+var response = user_get('potato', 'cG90YXRvOmVhdGFzcw==');
 console.log(response);
 
 
