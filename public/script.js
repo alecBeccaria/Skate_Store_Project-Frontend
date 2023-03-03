@@ -85,14 +85,18 @@ const fetchData = async (url, method, data = { Authorization: '', body: {} }) =>
         method: method,
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': "Basic " + data['Authorization']
+            'Content-Type': 'application/json'
         }
 
     }
 
     if (method !== 'GET') {
         request.Body = JSON.stringify(data.body);
+    }
+
+    // Checks to see if data object had Authorization included and if true adds auth header.
+    if (data['Authorization']) {
+        request.headers.Authorization = "Basic " + data['Authorization'];
     }
 
     
