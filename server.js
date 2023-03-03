@@ -10,11 +10,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 app.set('view engine', 'jade');
 
-app.use((req, res, next) => {
-    console.log('Time: ', Date.now());
-    next();
-});
-
+//Example of Middle-ware
 app.use('/request-type', (req, res, next) => {
     console.log('Request type: ', req.method);
     next();
@@ -52,6 +48,7 @@ app.get('/test', (req, res) => {
     res.render('test');
 });
 
+//Setting the port
 app.listen(PORT, () => {
     console.log(`server started on port ${PORT}`);
 });
