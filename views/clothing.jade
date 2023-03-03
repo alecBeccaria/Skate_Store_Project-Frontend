@@ -1,41 +1,12 @@
 doctype html
 html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title Solo Leveling
-    link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.15.4/css/all.css')
-    link(rel='stylesheet', href='style.css')
-  body
-    section#header
-      a(href='#')
-        img.logo(src='img/sll.png', alt='')
-      div
-        ul#navbar
-          li
-            a(onclick="window.location.href='index.html';")
-              | Home
-          li
-            a(onclick="window.location.href='shop.html';")
-              | Shop
-          li
-            a(onclick="window.location.href='skateboarding.html';")
-              | Skateboarding
-          li
-            a.active(onclick="window.location.href='clothing.html';") Clothing
-          li
-            a(onclick="window.location.href='accessories.html';")
-              | Accessories
-          li
-            a(onclick="window.location.href='cart.html';") Cart
-          li
-            a(onclick="window.location.href='login.html';") Login
+  extends layouts/template.jade
+  block template
     section#product1.section-p1
       h2 Clothing Products
       .pro-contain
         .pro(onclick="window.location.href='productpages/12product.html';")
-          img(src='img/products/hoodie.png', alt='')
+          img(src='img/products/hoodie.png' alt='')
           .desc
             span Deckadence
             h5 House of Decks Zip-Up Hoodie
@@ -54,8 +25,8 @@ html(lang='en')
         p
           | Get the latest news and
           span special offers
-                  on our products
+            on our products
         .form
-          input(type='text', placeholder='Enter your email')
+          input(type='text' placeholder='Enter your email')
           button Subscribe
     script(src='script.js')

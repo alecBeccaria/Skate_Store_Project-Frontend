@@ -1,36 +1,7 @@
 doctype html
 html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(http-equiv='X-UA-Compatible' content='IE=edge')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Solo Leveling
-    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.15.4/css/all.css')
-    link(rel='stylesheet' href='style.css')
-  body
-    section#header
-      a(href='#')
-        img.logo(src='img/sll.png' alt='')
-      div
-        ul#navbar
-          li
-            a(onclick="window.location.href='index.html';")
-              | Home
-          li
-            a(onclick="window.location.href='shop.html';")
-              | Shop
-          li
-            a(onclick="window.location.href='skateboarding.html';")
-              | Skateboarding
-          li
-            a(onclick="window.location.href='clothing.html';") Clothing
-          li
-            a.active(onclick="window.location.href='accessories.html';")
-              | Accessories
-          li
-            a(onclick="window.location.href='cart.html';") Cart
-          li
-            a(onclick="window.location.href='login.html';") Login
+  extends layouts/template.jade
+  block template
     section#product1.section-p1
       h2 Accessories
       .pro-contain

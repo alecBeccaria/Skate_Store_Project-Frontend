@@ -1,0 +1,34 @@
+html
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title Solo Leveling
+        link(rel='icon' type='image/x-icon' href='/img/favicon.ico')
+        link(rel='stylesheet' href='/style.css' type='text/css')
+    body
+        header
+            section#header
+                a(href='/')
+                    img.logo(src='img/sll.png' alt='')
+                div
+                    ul#navbar
+                        li
+                            a.active(href="/")
+                                | Home
+                        li
+                            a(href="/shop")
+                                | Shop
+                        li
+                            a(href="/skateboard")
+                                | Skateboarding
+                        li
+                            a(href="/clothing") Clothing
+                        li
+                            a(href="/accessories")
+                                | Accessories
+                        li
+                            a(href="/cart") Cart
+                        li
+                            a(href="/login") Login
+block template
