@@ -1,22 +1,23 @@
-doctype html
+<!DOCTYPE html>
 html(lang='en')
     extends layouts/template.jade
     block template
         video#videobg(autoplay='' muted='' loop='')
             source(src='img/Dan.mp4' type='video/mp4')
-        header#lheader
-            h1 Login
+        
+        h1 Login
         main
-            form#login_form.form_class(action='index.html' method='post')
-                .form_div
-                    label Email:
-                    input.field_class(name='login_txt' type='text' placeholder='Enter Email' autofocus='')
-                    label Password:
-                    input#pass.field_class(name='password_txt' type='password' placeholder='Enter Pass')
-                    button.submit_class(type='submit' form='login_form' onclick='return validarLogin()') Enter
-            .info_div
-                button.createbutton(onclick="window.location.href='create.html';") Create Account
-            section#promo2
+            form.form_class(action='/login' method='post').form_div
+                label Username
+                input.field_class(name='username' type='text' placeholder='Username' autofocus='')
+                label Password:
+                input#pass.field_class(name='password' type='password' placeholder='Enter Pass')
+                input.submit_class(type='submit' value='Login')
+                
+            button.createbutton(onclick='window.location.href = \'/signup\'') Create Account
+.info_div
+    
+        section#promo2
         seciton#newsletter
             .newstext
                 h4 Sign up for our Newsletter
