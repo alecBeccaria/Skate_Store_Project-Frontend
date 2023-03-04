@@ -1,4 +1,3 @@
-
 const fetchData = async (url, method, data) => {
     if (!url) return 'Error, url was not provided!';
     if (!method) return 'Error, request method was not provided!';
@@ -40,8 +39,7 @@ const fetchData = async (url, method, data) => {
 }
 
 const user_get = async (username, auth) => {
-    response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${username}`, 'GET', { authorization: auth, body: {} })
-    console.log(response);
+    const response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${username}`, 'GET', { authorization: auth, body: {} })
     return response;
 }
 

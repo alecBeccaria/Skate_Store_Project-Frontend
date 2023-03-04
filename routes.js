@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('./auth');
 const bodyParser = require('body-parser');
 const data = require('./data');
-const { saltyHash } = require('./auth');
+const { saltyHash, BasicAuth } = require('./auth');
 
 
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -20,9 +19,6 @@ router.get('/skateboard', (req, res) => {
 });
 router.get('/clothing', (req, res) => {
     res.render('clothing');
-});
-router.get('/create', (req, res) => {
-    res.render('create');
 });
 router.get('/item', (req, res) => {
     res.render('item');
@@ -44,12 +40,15 @@ router.get('/signup', (req, res) => {
 })
 
 //Post routes
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     let username = req.body.username;
     let password = saltyHash(req.body.password);
-    let basic_auth = auth.BasicAuth(username, password);
+    let basic_auth = BasicAuth(username, password);
 
-    data.user_get(username, basic_auth);
+    let response = await data.user_get(username, basic_auth);
+    console.log(response);
+    res.cookie("userData", response.body);
+    
 
     res.redirect('/login');
 });
@@ -60,7 +59,7 @@ router.post('/signup', (req, res) => {
         email: req.body.email,
         password: req.body.password
     }
-    user.password = auth.saltyHash(user.password);
+    user.password = saltyHash(user.password);
     
     console.log(user);
     data.user_post(user);

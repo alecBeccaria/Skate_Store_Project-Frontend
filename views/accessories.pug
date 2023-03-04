@@ -1,0 +1,28 @@
+extends layouts/template.pug
+block template
+  section#product1.section-p1
+    h2 Accessories
+    .pro-contain
+      .pro(onclick="window.location.href='productpages/13product.html';")
+        img(src='img/products/wax.png' alt='')
+        .desc
+          span Pig Wheels
+          h5 Pig Wheels- Pig Head Skate Wax
+          .star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+          h4 $7.85
+        a(href='#')
+          i.fas.fa-shopping-cart.cart
+  seciton#newsletter
+    .newstext
+      h4 Sign up for our Newsletter
+      p
+        | Get the latest news and
+        span special offers
+          on our products
+      .form
+        input(type='text' placeholder='Enter your email')
+        button Subscribe
+  script(src='script.js')
