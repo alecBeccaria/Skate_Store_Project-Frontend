@@ -47,8 +47,8 @@ router.post('/login', async (req, res) => {
 
     let response = await data.user_get(username, basic_auth);
     console.log(response);
-    res.cookie("userCookie", response.body);
-    
+    res.cookie("userCookie", response.body, { maxAge: 86400 * 1000 });
+
 
     res.redirect('/login');
 });
@@ -60,10 +60,10 @@ router.post('/signup', (req, res) => {
         password: req.body.password
     }
     user.password = saltyHash(user.password);
-    
+
     console.log(user);
     data.user_post(user);
-    
+
     res.redirect('/login');
 })
 
