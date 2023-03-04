@@ -47,7 +47,7 @@ router.post('/login', async (req, res) => {
 
     let response = await data.user_get(username, basic_auth);
     console.log(response);
-    res.cookie("userData", response.body);
+    res.cookie("userCookie", response.body);
     
 
     res.redirect('/login');
