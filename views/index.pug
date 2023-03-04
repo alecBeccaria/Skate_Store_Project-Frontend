@@ -1,0 +1,29 @@
+extends layouts/template.pug
+block template
+    video#videobg(autoplay='' muted='' loop='')
+        source(src='img/tyshawn.mp4' type='video/mp4')
+    section#promo
+        h3 March sale
+        h2 Insane deals!
+        h1 get 50% off on a deck when you buy a complete
+        p only valid for shop decks.
+        .container
+            a.button(href="/skateboard")
+                .button__line
+                .button__line
+                span.button__text Shop Skateboarding
+                .button__drow1
+                .button__drow2
+    seciton#newsletter
+        .newstext
+            h4 Sign up for our Newsletter
+            p
+                | Get the latest news and
+                span special offers
+                    on our products
+            .form
+                input(type='text' placeholder='Enter your email')
+                button Subscribe
+    script(src='/script.js' type='text/javascript')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/sha256.js')
