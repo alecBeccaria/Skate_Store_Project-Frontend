@@ -74,34 +74,4 @@ function addToCart() {
     image.src = product1.image;
 }
 
-//Fetch function
-
-
-
-//Password functions
-const saltyHash = (password) => {
-    const salt = ':m-vUM#BUv/F*urK'; //The salt should be hidden but idk how
-    const algo = CryptoJS.algo.SHA256.create();
-
-    algo.update(password, "utf-8");
-    algo.update(CryptoJS.SHA256(salt), "utf-8");
-
-    const hash = algo.finalize().toString(CryptoJS.enc.hex);
-    return hash;
-}
-
-const compareHash = (password, compareHash) => {
-    password = saltyHash(password);
-    return password === compareHash;
-}
-
-
-
-
-
-
-var response = user_get('potato', 'cG90YXRvOmVhdGFzcw==');
-console.log(response);
-
-
-
+//Moved SaltyHash and compareHash to auth.js
