@@ -1,6 +1,8 @@
 
+
 const product1 = {
-    name: "Baker Skateboard Deck",
+    category: "Skateboarding",
+    namer: "Baker Skateboard Deck",
     price: '$' + 65.21,
     image: 'img/products/bakerboard.png'
 };
@@ -66,12 +68,6 @@ const product13 = {
 };
 
 
-function addToCart() {
-    alert("Added to cart!");
-    document.getElementById("nametd").innerHTML = product1.name;
-    document.getElementById("pricetd").innerHTML = product1.price;
-    const image = document.querySelector(".image");
-    image.src = product1.image;
-}
+
 
 //Moved SaltyHash and compareHash to auth.js
