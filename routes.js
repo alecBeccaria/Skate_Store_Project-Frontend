@@ -47,6 +47,26 @@ router.get('/signup', (req, res) => {
     res.render('signup')
 });
 
+//Prodyct Js,
+
+const product1 = {
+    category: "Skateboarding",
+    namer: "Baker Skateboard Decs",
+    price: '$' + 65.21,
+    image: 'img/products/bakerboard.png',
+    details: ' '
+};
+router.get('/product', (req, res) => {
+    res.render('product', {
+        category: product1.category,
+        namer: product1.namer,
+        price: product1.price,
+        image: product1.image,
+        details: product1.details
+    })
+});
+
+
 //Post routes
 router.post('/login', async (req, res) => {
     let username = req.body.username;
@@ -87,5 +107,17 @@ router.post('/test', (req, res) => {
 })
 
 
+router.post('/sproduct', (req, res) => {
+    let product = {
+        name: req.body.name,
+        price: req.body.price,
+        image: req.body.image
+    }
+
+   // console.log(user);
+    data.user_post(product);
+
+    res.redirect('/login');
+})
 
 module.exports = router;
