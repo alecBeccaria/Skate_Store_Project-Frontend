@@ -3,6 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const data = require('./data');
 const { saltyHash, BasicAuth } = require('./auth');
+const { products } = require('./script')
 
 
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -37,7 +38,7 @@ router.get('/test', (req, res) => {
 });
 router.get('/signup', (req, res) => {
     res.render('signup')
-})
+});
 
 //Post routes
 router.post('/login', async (req, res) => {
@@ -65,6 +66,17 @@ router.post('/signup', (req, res) => {
     data.user_post(user);
 
     res.redirect('/login');
+});
+
+router.post('/test', (req,res) => {
+    let password = saltyHash('password');
+    let basic_auth = BasicAuth('abecc', password);
+
+    for (let i = 0; i < products.length; i++) {
+        const product = products[i];
+        data.item_post(product, basic_auth)
+    }
+    res.redirect('/test');
 })
 
 

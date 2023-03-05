@@ -1,6 +1,6 @@
 const cloudinary = require('cloudinary').v2;
 const { BasicAuth, saltyHash } = require('./auth');
-const { products } = require('./script')
+
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME_CLOUDINARY,
@@ -37,7 +37,7 @@ const fetchData = async (url, method, data) => {
 
 
     console.log(request);
-    console.log("Line 27 in data.js");
+    console.log("Line 40 in data.js");
     //This is where we actually call the server.
     try {
         const response = await fetch(url, request);
@@ -87,9 +87,13 @@ const user_post = async (user) => {
 }
 
 const item_post = async (item, auth) => {
+    
+    cloudinaryResponse = await upload_image(item);
 
-    item.image = upload_image(item.image);
+    item.image = cloudinaryResponse.secure_url;
 
+    item.price = item.price.toString();
+    
     const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/admin/item', 'POST', {
         authorization: auth,
         body: item
@@ -99,32 +103,15 @@ const item_post = async (item, auth) => {
 }
 
 
-
-const upload_image = (item) => {
-    const res = cloudinary.uploader.upload(item.image, { public_id: item.name })
-
-    res.then((data) => {
-        console.log(data);
-        console.log(data.secure_url);
-    }).catch((err) => {
-        console.log(err);
+function upload_image(item) {
+    return new Promise((resolve, reject) => {
+        cloudinary.uploader.upload(item.image, { public_id: item.name }, (err, url) => {
+            if (err) return reject(err);
+            return resolve(url);
+        })
     });
-
-
-    // Generate 
-    const url = cloudinary.url("olympic_flag", {
-        width: 100,
-        height: 150,
-        Crop: 'fill'
-    });
-
-    return url;
 }
 
-let password = saltyHash('password');
-let basic_auth = BasicAuth('abecc', password);
-
-item_post(products[0], basic_auth);
 
 module.exports = {
     fetchData: fetchData,
