@@ -1,3 +1,16 @@
+const cloudinary = require('cloudinary').v2;
+const { BasicAuth, saltyHash } = require('./auth');
+const { products } = require('./script')
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME_CLOUDINARY,
+    api_key: process.env.API_KEY_CLOUDINARY,
+    api_secret: process.env.API_SECRET_CLOUDINARY
+});
+
+
+
+
 const fetchData = async (url, method, data) => {
     if (!url) return 'Error, url was not provided!';
     if (!method) return 'Error, request method was not provided!';
@@ -44,14 +57,15 @@ const user_get = async (username, auth) => {
 }
 
 const user_delete = async (username, auth) => {
-    response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${username}`, 'DELETE', { authorization: auth, body: {} })
+    const response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${username}`, 'DELETE', { authorization: auth, body: {} })
     console.log(response);
     return response;
 }
 
 const user_put = async (username, auth) => {
-    response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${username}`, 'PUT', {
-        authorization: auth, body: {
+    const response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${username}`, 'PUT', {
+        authorization: auth,
+        body: {
             "password": "password",
             "email": "test",
             "cart": ['test', 'test1']
@@ -62,7 +76,7 @@ const user_put = async (username, auth) => {
 }
 
 const user_post = async (user) => {
-    response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user', 'POST', {
+    const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user', 'POST', {
         body: {
             username: user.username,
             email: user.email,
@@ -72,10 +86,52 @@ const user_post = async (user) => {
     console.log(response);
 }
 
+const item_post = async (item, auth) => {
+
+    item.image = upload_image(item.image);
+
+    const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/admin/item', 'POST', {
+        authorization: auth,
+        body: item
+    });
+    console.log(response);
+    return response;
+}
+
+
+
+const upload_image = (item) => {
+    const res = cloudinary.uploader.upload(item.image, { public_id: item.name })
+
+    res.then((data) => {
+        console.log(data);
+        console.log(data.secure_url);
+    }).catch((err) => {
+        console.log(err);
+    });
+
+
+    // Generate 
+    const url = cloudinary.url("olympic_flag", {
+        width: 100,
+        height: 150,
+        Crop: 'fill'
+    });
+
+    return url;
+}
+
+let password = saltyHash('password');
+let basic_auth = BasicAuth('abecc', password);
+
+item_post(products[0], basic_auth);
+
 module.exports = {
     fetchData: fetchData,
     user_get: user_get,
     user_post: user_post,
     user_delete: user_delete,
-    user_put: user_put
+    user_put: user_put,
+    item_post: item_post
 }
+
