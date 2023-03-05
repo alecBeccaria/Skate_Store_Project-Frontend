@@ -82,28 +82,41 @@ const user_post = async (user) => {
             email: user.email,
             password: user.password
         }
-    })
+    });
+
     console.log(response);
 }
 
 const item_post = async (item, auth) => {
-    
     cloudinaryResponse = await upload_image(item);
-
     item.image = cloudinaryResponse.secure_url;
-
     item.price = item.price.toString();
-    
+
     const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/admin/item', 'POST', {
         authorization: auth,
         body: item
     });
-    console.log(response);
+
+    return response;
+}
+
+const get_shop = async () => {
+    const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/shop', 'GET', {
+        body: {}
+    });
+
+    return response;
+}
+
+const get_shop_category = async (category) => {
+    const response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/shop/category/${category}`, 'GET', {
+    });
+
     return response;
 }
 
 
-function upload_image(item) {
+const upload_image = (item) => {
     return new Promise((resolve, reject) => {
         cloudinary.uploader.upload(item.image, { public_id: item.name }, (err, url) => {
             if (err) return reject(err);
@@ -113,12 +126,16 @@ function upload_image(item) {
 }
 
 
+
+
 module.exports = {
     fetchData: fetchData,
     user_get: user_get,
     user_post: user_post,
     user_delete: user_delete,
     user_put: user_put,
-    item_post: item_post
+    item_post: item_post,
+    get_shop: get_shop,
+    get_shop_category: get_shop_category
 }
 

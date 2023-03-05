@@ -12,14 +12,19 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.get('/', (req, res) => {
     res.render('index');
 });
-router.get('/shop', (req, res) => {
-    res.render('shop');
+router.get('/shop', async (req, res) => {
+    let shop = await data.get_shop();
+    res.render('shop', { shop: shop });
 });
-router.get('/skateboard', (req, res) => {
-    res.render('skateboard');
+router.get('/skateboard', async (req, res) => {
+    let decks = await data.get_shop_category('decks');
+    console.log(decks);
+    res.render('skateboard', { decks: decks });
 });
-router.get('/clothing', (req, res) => {
-    res.render('clothing');
+router.get('/clothing', async (req, res) => {
+    let clothing = await data.get_shop_category('clothing');
+    console.log(clothing);
+    res.render('clothing', { clothing: clothing });
 });
 router.get('/item', (req, res) => {
     res.render('item');
@@ -27,8 +32,10 @@ router.get('/item', (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login');
 });
-router.get('/accessories', (req, res) => {
-    res.render('accessories');
+router.get('/accessories', async (req, res) => {
+    let accessories = await data.get_shop_category('accessories');
+    console.log(accessories);
+    res.render('accessories', { accessories: accessories });
 });
 router.get('/cart', (req, res) => {
     res.render('cart');
@@ -68,7 +75,7 @@ router.post('/signup', (req, res) => {
     res.redirect('/login');
 });
 
-router.post('/test', (req,res) => {
+router.post('/test', (req, res) => {
     let password = saltyHash('password');
     let basic_auth = BasicAuth('abecc', password);
 
