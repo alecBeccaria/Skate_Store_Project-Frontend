@@ -139,7 +139,7 @@ const send_email = async (email) => {
                 sent_to: [
                     email
                 ],
-                body: "Buy our stuff at "
+                body: "Buy our stuff <a href=\"https://skate-board-shop.onrender.com/\">here!</a> plzzz"
             }
         }
     });
