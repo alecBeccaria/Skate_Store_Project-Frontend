@@ -3,10 +3,15 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const data = require('./data');
 const { saltyHash, BasicAuth } = require('./auth');
-const { products } = require('./script')
+const { products } = require('./script');
 
 
 router.use(bodyParser.urlencoded({ extended: true }));
+
+router.use(function (req, res, next) {
+    res.locals.user = req.cookies.userCookie;
+    next();
+})
 
 //Get routes
 router.get('/', (req, res) => {
@@ -46,6 +51,10 @@ router.get('/test', (req, res) => {
 router.get('/signup', (req, res) => {
     res.render('signup')
 });
+router.get('/logout', (req, res) => {
+    res.clearCookie('userCookie');
+    res.redirect('/login')
+});
 
 //Prodyct Js,
 
@@ -68,12 +77,11 @@ router.post('/login', async (req, res) => {
     let basic_auth = BasicAuth(username, password);
 
     let response = await data.user_get(username, basic_auth);
-    console.log(response);
+    //console.log(response);
     res.cookie("userCookie", response.body, { maxAge: 86400 * 1000 });
-
-
-    res.redirect('/login');
+    res.redirect('/');
 });
+
 
 router.post('/signup', (req, res) => {
     let user = {
@@ -101,7 +109,7 @@ router.post('/test', (req, res) => {
     res.redirect('/test');
 });
 
-router.post('/email', async (req,res) => {
+router.post('/email', async (req, res) => {
     let email = req.body.email;
     const response = await data.send_email(email);
 
