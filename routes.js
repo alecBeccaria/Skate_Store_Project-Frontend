@@ -104,7 +104,7 @@ router.post('/test', (req, res) => {
 router.post('/email', async (req,res) => {
     let email = req.body.email;
     const response = await data.send_email(email);
-    res.send(response);
+    res.render('subscribed');
 });
 
 
@@ -117,8 +117,6 @@ router.post('/sproduct', (req, res) => {
 
     // console.log(user);
     data.user_post(product);
-
-    res.redirect('/login');
 });
 
 
