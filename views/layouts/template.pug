@@ -12,7 +12,7 @@ html(lang='en')
             section#header
                 a(href='/')
                     img.logo(src='/img/sll.png' alt='')
-                div
+                nav
                     ul#navbar
                         li
                             a.active(href="/")
@@ -33,3 +33,9 @@ html(lang='en')
                         li
                             a(href="/login") Login
     block template
+footer
+    h4 Sign up for our Newsletter
+    p Get the latest news and special offers on our products
+    form(action='/email' method='post')
+        input(name='email' type='text' placeholder='Enter your email' autofocus='')
+        input(type='submit' value='Subscribe')

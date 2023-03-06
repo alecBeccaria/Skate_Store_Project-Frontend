@@ -6,7 +6,7 @@ block template
         .single-pro-detail
             h6#prodcat1=product.category
             h4#prodname1= product.name
-            h2#prodprice1= product.price
+            h2#prodprice1= '$'+product.price
             select
                 option Select Size
                 option 8.25&quot;
@@ -24,14 +24,3 @@ block template
             h4 Product Details
             span
                 | #{ description }
-        seciton#newsletter
-        .newstext
-            h4 Sign up for our Newsletter
-            p
-                | Get the latest news and
-                span special offers
-                |           on our products
-            .form
-                input(type='text' placeholder='Enter your email')
-                button Subscribe
-        script(type='text/javascript' src='/Frontend/scriptfile.js')

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +32,6 @@ h6 {
 p {
   font-size: 16px;
   color: #465b52;
-  margin: 15px 0 20px 0;
 }
 
 .section-p1 {
@@ -170,6 +170,7 @@ body {
   letter-spacing: 2px;
   transition: all 0.3s ease;
 }
+
 .button__text {
   display: flex;
   justify-content: center;
@@ -177,6 +178,7 @@ body {
   width: 100%;
   height: 100%;
 }
+
 .button::before,
 .button::after,
 .button__text::before,
@@ -188,26 +190,31 @@ body {
   background: var(--line_color);
   transition: all 0.5s ease;
 }
+
 .button::before {
   top: 0;
   left: 54px;
   width: calc(100% - 56px * 2 - 16px);
 }
+
 .button::after {
   top: 0;
   right: 54px;
   width: 8px;
 }
+
 .button__text::before {
   bottom: 0;
   right: 54px;
   width: calc(100% - 56px * 2 - 16px);
 }
+
 .button__text::after {
   bottom: 0;
   left: 54px;
   width: 8px;
 }
+
 .button__line {
   position: absolute;
   top: 0;
@@ -215,6 +222,7 @@ body {
   height: 100%;
   overflow: hidden;
 }
+
 .button__line::before {
   content: '';
   position: absolute;
@@ -225,25 +233,31 @@ body {
   border-radius: 300px;
   border: solid 3px var(--line_color);
 }
+
 .button__line:nth-child(1),
 .button__line:nth-child(1)::before {
   left: 0;
 }
+
 .button__line:nth-child(2),
 .button__line:nth-child(2)::before {
   right: 0;
 }
+
 .button:hover {
   letter-spacing: 6px;
 }
+
 .button:hover::before,
 .button:hover .button__text::before {
   width: 8px;
 }
+
 .button:hover::after,
 .button:hover .button__text::after {
   width: calc(100% - 56px * 2 - 16px);
 }
+
 .button__drow1,
 .button__drow2 {
   position: absolute;
@@ -251,6 +265,7 @@ body {
   border-radius: 16px;
   transform-origin: 16px 16px;
 }
+
 .button__drow1 {
   top: -16px;
   left: 40px;
@@ -258,6 +273,7 @@ body {
   height: 0;
   transform: rotate(30deg);
 }
+
 .button__drow2 {
   top: 44px;
   left: 77px;
@@ -265,6 +281,7 @@ body {
   height: 0;
   transform: rotate(-127deg);
 }
+
 .button__drow1::before,
 .button__drow1::after,
 .button__drow2::before,
@@ -272,6 +289,7 @@ body {
   content: '';
   position: absolute;
 }
+
 .button__drow1::before {
   bottom: 0;
   left: 0;
@@ -281,6 +299,7 @@ body {
   transform-origin: 16px 16px;
   transform: rotate(-60deg);
 }
+
 .button__drow1::after {
   top: -10px;
   left: 45px;
@@ -290,6 +309,7 @@ body {
   transform-origin: 16px 16px;
   transform: rotate(69deg);
 }
+
 .button__drow2::before {
   bottom: 0;
   left: 0;
@@ -299,6 +319,7 @@ body {
   transform-origin: 16px 16px;
   transform: rotate(-146deg);
 }
+
 .button__drow2::after {
   bottom: 26px;
   left: -40px;
@@ -308,6 +329,7 @@ body {
   transform-origin: 16px 16px;
   transform: rotate(-262deg);
 }
+
 .button__drow1,
 .button__drow1::before,
 .button__drow1::after,
@@ -316,73 +338,91 @@ body {
 .button__drow2::after {
   background: var(--back_color);
 }
+
 .button:hover .button__drow1 {
   animation: drow1 ease-in 0.06s;
   animation-fill-mode: forwards;
 }
+
 .button:hover .button__drow1::before {
   animation: drow2 linear 0.08s 0.06s;
   animation-fill-mode: forwards;
 }
+
 .button:hover .button__drow1::after {
   animation: drow3 linear 0.03s 0.14s;
   animation-fill-mode: forwards;
 }
+
 .button:hover .button__drow2 {
   animation: drow4 linear 0.06s 0.2s;
   animation-fill-mode: forwards;
 }
+
 .button:hover .button__drow2::before {
   animation: drow3 linear 0.03s 0.26s;
   animation-fill-mode: forwards;
 }
+
 .button:hover .button__drow2::after {
   animation: drow5 linear 0.06s 0.32s;
   animation-fill-mode: forwards;
 }
+
 @keyframes drow1 {
   0% {
     height: 0;
   }
+
   100% {
     height: 100px;
   }
 }
+
 @keyframes drow2 {
   0% {
     width: 0;
     opacity: 0;
   }
+
   10% {
     opacity: 0;
   }
+
   11% {
     opacity: 1;
   }
+
   100% {
     width: 120px;
   }
 }
+
 @keyframes drow3 {
   0% {
     width: 0;
   }
+
   100% {
     width: 80px;
   }
 }
+
 @keyframes drow4 {
   0% {
     height: 0;
   }
+
   100% {
     height: 120px;
   }
 }
+
 @keyframes drow5 {
   0% {
     width: 0;
   }
+
   100% {
     width: 124px;
   }
@@ -398,18 +438,6 @@ body {
   align-items: center;
 }
 
-#newsletter {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-  /* From https://css.glass */
-  background: rgba(75, 200, 255, 0.44);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(11.8px);
-  -webkit-backdrop-filter: blur(11.8px);
-  border: 1px solid rgba(75, 200, 255, 0.3);
-}
 
 /*Proudct Setup 1*/
 
@@ -492,6 +520,7 @@ body {
   padding: 40px 0 20px 0;
   font-size: 20px;
 }
+
 #prodetails .single-pro-detail h4 {
   padding: 40px 0 20px 0;
   font-size: 50px;
@@ -510,6 +539,7 @@ body {
   font-size: 16px;
   margin-right: 10px;
 }
+
 #prodetails .single-pro-detail span {
   line-height: 25px;
 }
@@ -524,91 +554,93 @@ body {
   flex-direction: column;
 }
 
-#cart table{
+#cart table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
   white-space: nowrap;
 }
-#cart table img{
+
+#cart table img {
   width: 70px;
 }
 
-#cart table td:nth-child(1){
+#cart table td:nth-child(1) {
   width: 100px;
   text-align: center;
 }
 
-#cart table td:nth-child(2){
+#cart table td:nth-child(2) {
   width: 150px;
   text-align: center;
 }
 
-#cart table td:nth-child(3){
+#cart table td:nth-child(3) {
   width: 250px;
   text-align: center;
 }
 
 #cart table td:nth-child(4),
 #cart table td:nth-child(5),
-#cart table td:nth-child(6){
+#cart table td:nth-child(6) {
   width: 150px;
   text-align: center;
 }
 
-#cart table td:nth-child(5) input{
+#cart table td:nth-child(5) input {
   width: 75px;
   padding: 10px 5px 10px 15px;
 }
 
-#cart table thead{
+#cart table thead {
   border: 1px solid #e2e9e1;
   border-left: none;
   border-right: none;
 }
 
-#cart table thead td{
+#cart table thead td {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 13px;
   padding: 18px 0;
 }
 
-#cart table tbody tr td{
+#cart table tbody tr td {
   padding-top: 18px;
 }
 
-#cart table tbody td{
+#cart table tbody td {
   font-size: 13px;
 }
 
-#cart-add{
+#cart-add {
   padding-left: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-#subtotal{
- width: 100%;
- margin-bottom: 30px;
- border: 1px solid #e2e9e1;padding: 30px;
+#subtotal {
+  width: 100%;
+  margin-bottom: 30px;
+  border: 1px solid #e2e9e1;
+  padding: 30px;
 }
 
-#subtotal table{
+#subtotal table {
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 20px;
- }
+}
 
- #subtotal button{
+#subtotal button {
   background-color: #0d7de2;
   color: #fff;
   padding: 12px 20px;
- }
+}
 
- /*Login*/
- #lbody {
+/*Login*/
+#lbody {
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
@@ -640,22 +672,25 @@ body {
   text-align: center;
   margin-top: 20px;
 }
+
 .form_class {
   position: fixed;
   width: 500px;
   padding: 40px;
   border-radius: 8px;
-  box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+  box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.3);
   /* From https://css.glass */
   background: rgba(95, 87, 87, 0.44);
   backdrop-filter: blur(11.8px);
   -webkit-backdrop-filter: blur(11.8px);
   border: 1px solid rgba(95, 87, 87, 0.3);
 }
+
 .form_div {
   text-transform: uppercase;
 }
-.form_div > label {
+
+.form_div>label {
   letter-spacing: 3px;
   font-size: 1rem;
 }
@@ -663,6 +698,7 @@ body {
 .info_div {
   letter-spacing: 1px;
 }
+
 .field_class {
   width: 100%;
   border-radius: 6px;
@@ -675,6 +711,7 @@ body {
   font-size: 0.9rem;
   letter-spacing: 2px;
 }
+
 .submit_class {
   border-style: none;
   border-radius: 5px;
@@ -685,10 +722,11 @@ body {
   display: block;
   margin: auto;
   margin-top: 10px;
-  box-shadow: 2px 2px 5px rgb(0,0,0,0.2);
+  box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.2);
   cursor: pointer;
 }
- .createbutton{
+
+.createbutton {
   border-style: none;
   border-radius: 5px;
   background-color: #5bc6f0;
@@ -698,23 +736,30 @@ body {
   display: block;
   margin: auto;
   margin-top: 10px;
-  box-shadow: 2px 2px 5px rgb(0,0,0,0.2);
+  box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.2);
   cursor: pointer;
- }
+}
+
 footer {
-  height: 10vh;
-  background-color: black;
-  color: white;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: -5px -5px 10px rgb(0,0,0,0.3);
+  padding: 25px;
+  flex-direction: column;
+  align-items: left;
+  /* justify-content: left; */
+  /* From https://css.glass */
+  background: rgba(75, 200, 255, 0.44);
+  border-top: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
-footer > p {
-  text-align: center;
-  letter-spacing: 3px;
+
+footer>p {
+  padding: 5px 0px 5px 0px;
 }
-footer > p > a {
+
+footer>p>a {
   text-decoration: none;
   color: white;
   font-weight: bold;
