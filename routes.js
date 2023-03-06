@@ -104,6 +104,7 @@ router.post('/test', (req, res) => {
 router.post('/email', async (req,res) => {
     let email = req.body.email;
     const response = await data.send_email(email);
+
     res.render('subscribed');
 });
 

@@ -2,7 +2,7 @@ extends layouts/template.pug
 block template
     video#videobg(autoplay='' muted='' loop='')
         source(src='img/Dan.mp4' type='video/mp4')
-    
+
     h1 Login
     main
         form.form_class(action='/login' method='post').form_div
@@ -11,18 +11,8 @@ block template
             label Password:
             input#pass.field_class(name='password' type='password' placeholder='Enter Pass')
             input.submit_class(type='submit' value='Login')
-            
+
         button.createbutton(onclick='window.location.href = \'/signup\'') Create Account
     .info_div
 
     section#promo2
-    seciton#newsletter
-        .newstext
-            h4 Sign up for our Newsletter
-            p
-                | Get the latest news and
-                span special offers
-                    on our products
-            .form
-                input(type='text' placeholder='Enter your email')
-                button Subscribe

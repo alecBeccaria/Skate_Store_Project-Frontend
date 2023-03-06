@@ -139,10 +139,11 @@ const send_email = async (email) => {
                 sent_to: [
                     email
                 ],
-                body: "Buy our stuff at https://skate-board-shop.onrender.com/ plzzz"
+                body: "Buy our stuff plzzz!"
             }
         }
     });
+    console.log(response);
     return response;
 }
 
