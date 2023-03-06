@@ -36,8 +36,8 @@ const fetchData = async (url, method, data) => {
     }
 
 
-    console.log(request);
-    console.log("Line 40 in data.js");
+    //console.log(request);
+    //console.log("Line 40 in data.js");
     //This is where we actually call the server.
     try {
         const response = await fetch(url, request);
@@ -115,6 +115,13 @@ const get_shop_category = async (category) => {
     return response;
 }
 
+const get_shop_item = async (id) => {
+    const response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/shop/item/${id}`, 'GET', {
+    });
+
+    return response;
+}
+
 
 const upload_image = (item) => {
     return new Promise((resolve, reject) => {
@@ -123,6 +130,20 @@ const upload_image = (item) => {
             return resolve(url);
         })
     });
+}
+
+const send_email = async (email) => {
+    const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/email', 'POST', {
+        body: {
+            email: {
+                sent_to: [
+                    email
+                ],
+                body: "Buy our stuff at "
+            }
+        }
+    });
+    return response;
 }
 
 
@@ -136,6 +157,8 @@ module.exports = {
     user_put: user_put,
     item_post: item_post,
     get_shop: get_shop,
-    get_shop_category: get_shop_category
+    get_shop_category: get_shop_category,
+    get_shop_item: get_shop_item,
+    send_email: send_email
 }
 

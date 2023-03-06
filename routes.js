@@ -14,17 +14,17 @@ router.get('/', (req, res) => {
 });
 router.get('/shop', async (req, res) => {
     let shop = await data.get_shop();
-    res.render('shop', { shop: shop });
+    res.render('shop', { items: shop });
 });
 router.get('/skateboard', async (req, res) => {
     let decks = await data.get_shop_category('decks');
-    console.log(decks);
-    res.render('skateboard', { decks: decks });
+    //console.log(decks);
+    res.render('skateboard', { items: decks });
 });
 router.get('/clothing', async (req, res) => {
     let clothing = await data.get_shop_category('clothing');
-    console.log(clothing);
-    res.render('clothing', { clothing: clothing });
+    //console.log(clothing);
+    res.render('clothing', { items: clothing });
 });
 router.get('/item', (req, res) => {
     res.render('item');
@@ -34,8 +34,8 @@ router.get('/login', (req, res) => {
 });
 router.get('/accessories', async (req, res) => {
     let accessories = await data.get_shop_category('accessories');
-    console.log(accessories);
-    res.render('accessories', { accessories: accessories });
+    //console.log(accessories);
+    res.render('accessories', { items: accessories });
 });
 router.get('/cart', (req, res) => {
     res.render('cart');
@@ -49,20 +49,14 @@ router.get('/signup', (req, res) => {
 
 //Prodyct Js,
 
-const product1 = {
-    category: "Skateboarding",
-    namer: "Baker Skateboard Decs",
-    price: '$' + 65.21,
-    image: 'img/products/bakerboard.png',
-    details: ' '
-};
-router.get('/product', (req, res) => {
+//Goes to specific Item page
+router.get('/shop/product/:item_id', async (req, res) => {
+    const item_id = req.params.item_id;
+    //console.log(item_id);
+    const product = await data.get_shop_item(item_id);
+    //console.log(product);
     res.render('product', {
-        category: product1.category,
-        namer: product1.namer,
-        price: product1.price,
-        image: product1.image,
-        details: product1.details
+        product: product
     })
 });
 
@@ -95,6 +89,7 @@ router.post('/signup', (req, res) => {
     res.redirect('/login');
 });
 
+//This up loaded a list of objects to DynamoDb
 router.post('/test', (req, res) => {
     let password = saltyHash('password');
     let basic_auth = BasicAuth('abecc', password);
@@ -104,7 +99,13 @@ router.post('/test', (req, res) => {
         data.item_post(product, basic_auth)
     }
     res.redirect('/test');
-})
+});
+
+router.post('/email', async (req,res) => {
+    let email = req.body.email;
+    const response = await data.send_email(email);
+    res.send(response);
+});
 
 
 router.post('/sproduct', (req, res) => {
@@ -114,10 +115,12 @@ router.post('/sproduct', (req, res) => {
         image: req.body.image
     }
 
-   // console.log(user);
+    // console.log(user);
     data.user_post(product);
 
     res.redirect('/login');
-})
+});
+
+
 
 module.exports = router;

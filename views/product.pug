@@ -1,37 +1,37 @@
 extends layouts/template.pug
 block template
-  section#prodetails.section-p1
-    .single-pro-img
-        img#prodimg1(src= width='100%' alt='')
-    .single-pro-detail
-        h6#prodcat1 #{ category }
-        h4#prodname1 #{ namer }
-        h2#prodprice1 #{ price }
-        select
-            option Select Size
-            option 8.25&quot;
-            option 8.375&quot;
-            option 8.5&quot;
-            option 8.75&quot;
-        input(type='number' value='1')
-        .container2
-            button.button(href='#' onclick='')
-                .button__line
-                .button__line
-                span.button__text Add to Cart
-                .button__drow1
-                .button__drow2
-        h4 Product Details
-        span
-            | #{ details }
-    seciton#newsletter
-    .newstext
-        h4 Sign up for our Newsletter
-        p
-            | Get the latest news and
-            span special offers
-            |           on our products
-        .form
-            input(type='text' placeholder='Enter your email')
-            button Subscribe
-    script(type='text/javascript' src='/Frontend/scriptfile.js')
+    section#prodetails.section-p1
+        .single-pro-img
+            img#prodimg1(src=product.image width='100%' alt='')
+        .single-pro-detail
+            h6#prodcat1=product.category
+            h4#prodname1= product.name
+            h2#prodprice1= product.price
+            select
+                option Select Size
+                option 8.25&quot;
+                option 8.375&quot;
+                option 8.5&quot;
+                option 8.75&quot;
+            input(type='number' value='1')
+            .container2
+                button.button(href='#' onclick='')
+                    .button__line
+                    .button__line
+                    span.button__text Add to Cart
+                    .button__drow1
+                    .button__drow2
+            h4 Product Details
+            span
+                | #{ description }
+        seciton#newsletter
+        .newstext
+            h4 Sign up for our Newsletter
+            p
+                | Get the latest news and
+                span special offers
+                |           on our products
+            .form
+                input(type='text' placeholder='Enter your email')
+                button Subscribe
+        script(type='text/javascript' src='/Frontend/scriptfile.js')
