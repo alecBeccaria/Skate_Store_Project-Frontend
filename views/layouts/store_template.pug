@@ -1,0 +1,32 @@
+extends template.pug
+block template
+    section#product1.section-p1
+        h2 All Products
+        .pro-contain
+            each val in items
+                a(href=`shop/product/${val.id}`).pro
+                    img(src=val.image alt='')
+                    .desc
+                        span=val.manufacturer
+                        h5=val.name
+                        .star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                        h4='$'+val.price
+
+    seciton#newsletter
+        .newstext
+            h4 Sign up for our Newsletter
+            p
+                | Get the latest news and
+                span special offers
+                    on our products
+            .form
+            form(action='/email' method='post').form_div
+                label Email
+                input.field_class(name='email' type='text' placeholder='email' autofocus='')
+                input(type='submit' value='Subscribe')
+    block store_template
