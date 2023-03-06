@@ -1,17 +1,22 @@
 extends layouts/template.pug
 block template
-    video#videobg(autoplay='' muted='' loop='')
+    video#videobg2(autoplay='' muted='' loop='')
         source(src='img/Dan.mp4' type='video/mp4')
     
     h1 Login
     main
+      .info_box
         form.form_class(action='/login' method='post').form_div
             label Username
             input.field_class(name='username' type='text' placeholder='Username' autofocus='')
             label Password:
             input#pass.field_class(name='password' type='password' placeholder='Enter Pass')
             input.submit_class(type='submit' value='Login')
+<<<<<<< Updated upstream
             
+=======
+    .buttonc
+>>>>>>> Stashed changes
         button.createbutton(onclick='window.location.href = \'/signup\'') Create Account
     .info_div
 
