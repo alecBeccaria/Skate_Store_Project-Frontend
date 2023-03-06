@@ -4,8 +4,11 @@ const bodyParser = require('body-parser');
 const data = require('./data');
 const { saltyHash, BasicAuth } = require('./auth');
 const { products } = require('./script');
+const auth = require('./auth');
+const file_upload = require('express-fileupload');
+const fs = require('node:fs/promises');
 
-
+router.use(file_upload());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.use(function (req, res, next) {
@@ -46,6 +49,7 @@ router.get('/cart', (req, res) => {
     res.render('cart');
 });
 router.get('/test', (req, res) => {
+
     res.render('test');
 });
 router.get('/signup', (req, res) => {
@@ -78,11 +82,13 @@ router.post('/login', async (req, res) => {
 
     let response = await data.user_get(username, basic_auth);
     //console.log(response);
-    if(response.body !== undefined) {
+    if (response.body !== undefined) {
         res.cookie("userCookie", response.body, { maxAge: 86400 * 1000 });
-    res.redirect('/');
+        res.redirect('/');
+    } else {
+        res.render('login', { message: "Incorrect Login" });
     }
-    res.render('/login', {message: "Incorrect Login"});
+
 });
 
 
@@ -101,15 +107,44 @@ router.post('/signup', (req, res) => {
 });
 
 //This up loaded a list of objects to DynamoDb
-router.post('/test', (req, res) => {
-    let password = saltyHash('password');
-    let basic_auth = BasicAuth('abecc', password);
+router.post('/item/add', async (req, res) => {
+    const user = req.cookies.userCookie;
 
-    for (let i = 0; i < products.length; i++) {
-        const product = products[i];
-        data.item_post(product, basic_auth)
+    const product = req.body;
+    if (req.files) {
+        let image = req.files.image;
+        let filename = image.name;
+        let location = './uploads/' + filename;
+
+
+        image.mv(location, async (err) => {
+            if (!err) {
+                product.image = location
+                if (user === undefined) {
+                    res.render('login', { message: "you are not authorized to do this!" });
+                } else {
+                    if (user.role === 'user') {
+                        res.render('login', { message: "you are not authorized to do this!" });
+                    } else {
+                        console.log(user)
+                        user_auth = BasicAuth(user.username, user.password);
+                        let item_response = await data.item_post(product, user_auth)
+                        console.log(item_response);
+                        try {
+                            await fs.unlink(location);
+                            console.log('temp image file removed');
+                        } catch (err) {
+                            console.error('There was an error' + err.message);
+                        }
+                        res.redirect('/test')
+                    }
+                }
+            } else {
+                console.log(err);
+                res.send('err occured');
+            }
+        })
     }
-    res.redirect('/test');
 });
 
 router.post('/email', async (req, res) => {
@@ -130,6 +165,9 @@ router.post('/sproduct', (req, res) => {
     // console.log(user);
     data.user_post(product);
 });
+
+
+
 
 
 

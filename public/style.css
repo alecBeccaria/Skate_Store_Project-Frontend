@@ -812,3 +812,7 @@ footer>p>a {
   color: white;
   font-weight: bold;
 }
+
+form>p {
+  color: red;
+}

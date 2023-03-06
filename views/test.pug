@@ -3,17 +3,27 @@ head
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    
     title Test this shit
 body
-
-    form(action='/test' method='post')
+    p Add an Item
+    form(action='/item/add' method='post' enctype="multipart/form-data")
+        input(placeholder='Name' type='text' name='name')
+        br
+        input(placeholder='Category' type='text' name='category')
+        br
+        input(placeholder='Price' type='text' name='price')
+        br
+        input(placeholder='Description' type='text' name='description')
+        br
+        input(placeholder='Manufacturer' type='text' name='manufacturer')
+        br
+        label Image file
+        br
+        input(type='file' name='image')
+        br
+        br
         button(action='submit') Submit item
 
     button(onclick='user_get()') GET
     button(onclick='user_delete()') DELETE
-    script(src='/script.js' type='text/javascript')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/sha256.js')
-    script(src='script.js')
-    
-    

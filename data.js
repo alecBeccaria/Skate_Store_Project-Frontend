@@ -2,6 +2,8 @@ const cloudinary = require('cloudinary').v2;
 const { BasicAuth, saltyHash } = require('./auth');
 
 
+
+
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME_CLOUDINARY,
     api_key: process.env.API_KEY_CLOUDINARY,
@@ -146,6 +148,8 @@ const send_email = async (email) => {
     console.log(response);
     return response;
 }
+
+
 
 
 
