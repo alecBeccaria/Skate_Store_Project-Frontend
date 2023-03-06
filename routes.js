@@ -78,8 +78,11 @@ router.post('/login', async (req, res) => {
 
     let response = await data.user_get(username, basic_auth);
     //console.log(response);
-    res.cookie("userCookie", response.body, { maxAge: 86400 * 1000 });
+    if(response.body !== undefined) {
+        res.cookie("userCookie", response.body, { maxAge: 86400 * 1000 });
     res.redirect('/');
+    }
+    res.render('/login', {message: "Incorrect Login"});
 });
 
 

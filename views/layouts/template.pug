@@ -31,10 +31,14 @@ html(lang='en')
                         li
                             a(href="/cart") Cart
                         li
-                            if (user != null)
+                            if (user !== undefined)
                                 a(href="/logout") Logout
                             else
                                 a(href='/login') Login
+                        if (user !== undefined)
+                            if (user.role == 'admin')
+                                li
+                                    a(href='/test') Admin Stuffs
     block template
 footer
     h4 Sign up for our Newsletter
