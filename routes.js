@@ -7,6 +7,7 @@ const { products } = require('./script');
 const auth = require('./auth');
 const file_upload = require('express-fileupload');
 const fs = require('node:fs/promises');
+const { contains_id, replace_item, cart_total } = require('./utils');
 
 router.use(file_upload());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -45,8 +46,16 @@ router.get('/accessories', async (req, res) => {
     //console.log(accessories);
     res.render('accessories', { items: accessories });
 });
-router.get('/cart', (req, res) => {
-    res.render('cart');
+router.get('/cart', async (req, res) => {
+    let user = req.cookies.userCookie;
+    for (let i = 0; i < user.cart.length; i++) {
+        let cartItem = user.cart[i];
+        let product = await data.get_shop_item(cartItem.item_id);
+        product.quantity = cartItem.quantity;
+        user.cart[i] = product;
+    }
+
+    res.render('cart', { user: user, cart_total: cart_total(user.cart), shipping: 5.53 });
 });
 router.get('/test', (req, res) => {
 
@@ -99,8 +108,6 @@ router.post('/signup', (req, res) => {
         password: req.body.password
     }
     user.password = saltyHash(user.password);
-
-    console.log(user);
     data.user_post(user);
 
     res.redirect('/login');
@@ -136,7 +143,7 @@ router.post('/item/add', async (req, res) => {
                         } catch (err) {
                             console.error('There was an error' + err.message);
                         }
-                        res.redirect('/test')
+                        res.redirect('/test');
                     }
                 }
             } else {
@@ -179,7 +186,7 @@ router.post('/shop/product/:item_id/addtocart', (req, res) => {
         contains = contains_id(user.cart, cartItem.item_id);
         if (contains) {
             user.cart = replace_item(user.cart, cartItem);
-        }else{
+        } else {
             user.cart.push(cartItem);
         }
         res.cookie("userCookie", user, { maxAge: 86400 * 1000 });
@@ -189,26 +196,7 @@ router.post('/shop/product/:item_id/addtocart', (req, res) => {
     }
 });
 
-const contains_id = (array, to_find) => {
-    for (let i = 0; i < array.length; i++) {
-        id = array[i].item_id;
-        if (id == to_find) {
-            return array[i];
-        }
-    }
-    return false;
-}
 
-const replace_item = (array, item) => {
-    for (let i = 0; i < array.length; i++) {
-        id = array[i].item_id;
-        if (id == item.item_id) {
-            array[i] = item;
-            return array;
-        }
-    }
-    return false;
-}
 
 
 
