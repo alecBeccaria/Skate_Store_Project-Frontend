@@ -14,7 +14,6 @@ app.set('view engine', 'pug');
 
 //Example of Middle-ware
 app.use('/request-type', (req, res, next) => {
-    console.log('Request type: ', req.method);
     next();
 });
 

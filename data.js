@@ -61,7 +61,6 @@ const user_get = async (username, auth) => {
 
 const user_delete = async (username, auth) => {
     const response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${username}`, 'DELETE', { authorization: auth, body: {} })
-    console.log(response);
     return response;
 }
 
@@ -86,7 +85,7 @@ const user_post = async (user) => {
         }
     });
 
-    console.log(response);
+    return response;
 }
 
 const item_post = async (item, auth) => {

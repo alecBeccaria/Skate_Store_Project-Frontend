@@ -73,9 +73,9 @@ router.get('/logout', (req, res) => {
 //Goes to specific Item page
 router.get('/shop/product/:item_id', async (req, res) => {
     const item_id = req.params.item_id;
-    //console.log(item_id);
+    
     const product = await data.get_shop_item(item_id);
-    //console.log(product);
+    
     res.render('product', {
         product: product
     })
@@ -89,7 +89,6 @@ router.post('/login', async (req, res) => {
     let basic_auth = BasicAuth(username, password);
 
     let response = await data.user_get(username, basic_auth);
-    console.log(response);
     if (response.body !== undefined) {
         res.cookie("userCookie", response.body, { maxAge: 86400 * 1000 });
         res.redirect('/');
@@ -132,10 +131,8 @@ router.post('/item/add', async (req, res) => {
                     if (user.role === 'user') {
                         res.render('login', { message: "you are not authorized to do this!" });
                     } else {
-                        console.log(user)
                         user_auth = BasicAuth(user.username, user.password);
                         let item_response = await data.item_post(product, user_auth)
-                        console.log(item_response);
                         try {
                             await fs.unlink(location);
                             console.log('temp image file removed');
