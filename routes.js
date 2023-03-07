@@ -166,6 +166,50 @@ router.post('/sproduct', (req, res) => {
     data.user_post(product);
 });
 
+router.post('/shop/product/:item_id/addtocart', (req, res) => {
+    let cartItem = {
+        quantity: req.body.quantity,
+        size: req.body.size,
+        item_id: req.params.item_id
+    };
+    let user = req.cookies.userCookie;
+    console.log(user.cart);
+
+    if (user) {
+        contains = contains_id(user.cart, cartItem.item_id);
+        if (contains) {
+            user.cart = replace_item(user.cart, cartItem);
+        }else{
+            user.cart.push(cartItem);
+        }
+        res.cookie("userCookie", user, { maxAge: 86400 * 1000 });
+        res.redirect(`/shop/product/${cartItem.item_id}/`);
+    } else {
+        res.render('login', { message: "You need to be logged in to add to cart" })
+    }
+});
+
+const contains_id = (array, to_find) => {
+    for (let i = 0; i < array.length; i++) {
+        id = array[i].item_id;
+        if (id == to_find) {
+            return array[i];
+        }
+    }
+    return false;
+}
+
+const replace_item = (array, item) => {
+    for (let i = 0; i < array.length; i++) {
+        id = array[i].item_id;
+        if (id == item.item_id) {
+            array[i] = item;
+            return array;
+        }
+    }
+    return false;
+}
+
 
 
 
