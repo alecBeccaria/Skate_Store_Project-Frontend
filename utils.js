@@ -23,7 +23,7 @@ const cart_total = (cart) => {
     let total = 0;
     for(let i = 0; i<cart.length; i++) {
         const item = cart[i];
-        total += parseFloat(item.price);
+        total += parseFloat(item.price * item.quantity);
     }
     return total;
 }
