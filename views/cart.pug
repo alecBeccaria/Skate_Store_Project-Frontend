@@ -14,8 +14,9 @@ block template
       tbody#incart
         each item in user.cart 
           tr
-            td 
-              button(onclick=`window.location.href='/cart/remove/${item.id}';`) Remove 
+            td
+              form(action=`/cart/remove/${item.id}` method='post')
+                button(type='submit') Remove 
             td
               p=item.name
             td
@@ -42,5 +43,6 @@ block template
             td
               strong Total
             td
-              strong=cart_total+shipping
-      button.normal Buy Items
+              strong=parseFloat(cart_total)+parseFloat(shipping)+0.5
+      form(action='/cart/buy' method='post')
+        button(type='submit').normal Buy Items

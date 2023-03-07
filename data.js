@@ -65,16 +65,15 @@ const user_delete = async (username, auth) => {
     return response;
 }
 
-const user_put = async (username, auth) => {
-    const response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${username}`, 'PUT', {
+const user_put = async (user, auth) => {
+    const response = await fetchData(`https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/user/${user.username}`, 'PUT', {
         authorization: auth,
         body: {
-            "password": "password",
-            "email": "test",
-            "cart": ['test', 'test1']
+            "password": user.password,
+            "email": user.email,
+            "cart": user.cart
         }
     })
-    console.log(response);
     return response;
 }
 
@@ -135,23 +134,19 @@ const upload_image = (item) => {
     });
 }
 
-const send_email = async (email) => {
+const send_email = async (email, body) => {
     const response = await fetchData('https://umj04k878g.execute-api.us-east-1.amazonaws.com/test/email', 'POST', {
         body: {
             email: {
                 sent_to: [
                     email
                 ],
-                body: "Buy our stuff plzzz!"
+                body: body
             }
         }
     });
-    console.log(response);
     return response;
 }
-
-
-
 
 module.exports = {
     fetchData: fetchData,

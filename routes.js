@@ -8,6 +8,7 @@ const auth = require('./auth');
 const file_upload = require('express-fileupload');
 const fs = require('node:fs/promises');
 const { contains_id, replace_item, cart_total } = require('./utils');
+const utils = require('./utils');
 
 router.use(file_upload());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -69,8 +70,6 @@ router.get('/logout', (req, res) => {
     res.redirect('/login')
 });
 
-//Prodyct Js,
-
 //Goes to specific Item page
 router.get('/shop/product/:item_id', async (req, res) => {
     const item_id = req.params.item_id;
@@ -90,7 +89,7 @@ router.post('/login', async (req, res) => {
     let basic_auth = BasicAuth(username, password);
 
     let response = await data.user_get(username, basic_auth);
-    //console.log(response);
+    console.log(response);
     if (response.body !== undefined) {
         res.cookie("userCookie", response.body, { maxAge: 86400 * 1000 });
         res.redirect('/');
@@ -156,8 +155,7 @@ router.post('/item/add', async (req, res) => {
 
 router.post('/email', async (req, res) => {
     let email = req.body.email;
-    const response = await data.send_email(email);
-
+    await data.send_email(email, 'Buy our stuff plzz!');
     res.render('subscribed');
 });
 
@@ -196,11 +194,19 @@ router.post('/shop/product/:item_id/addtocart', (req, res) => {
     }
 });
 
+router.post('/cart/buy', (req, res) => {
+    const user = req.cookies.userCookie;
+    const basic_auth = process.env.ADMIN_AUTH;
+    data.user_put(user, basic_auth);
+    data.send_email(user.email, "Thank you for your purchase!");
+    res.redirect('/cart');
+});
 
-
-
-
-
-
+router.post('/cart/remove/:item_id', (req, res) => {
+    const user = req.cookies.userCookie;
+    user.cart = utils.remove_item(user.cart, req.params.item_id);
+    res.cookie('userCookie', user, { maxAge: 86400 * 1000 });
+    res.redirect('/cart');
+})
 
 module.exports = router;

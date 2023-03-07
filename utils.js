@@ -19,6 +19,16 @@ const replace_item = (array, item) => {
     return false;
 }
 
+const remove_item = (array, item_id) => {
+    for (let i = 0; i < array.length; i++) {
+        const item = array[i];
+        if(item.item_id === item_id) {
+            array.splice(i, 1);
+        }        
+    }
+    return array;
+}
+
 const cart_total = (cart) => {
     let total = 0;
     for(let i = 0; i<cart.length; i++) {
@@ -31,5 +41,6 @@ const cart_total = (cart) => {
 module.exports = {
     contains_id: contains_id,
     replace_item: replace_item,
-    cart_total: cart_total
+    cart_total: cart_total,
+    remove_item: remove_item
 }
