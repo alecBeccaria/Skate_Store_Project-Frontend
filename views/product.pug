@@ -7,19 +7,20 @@ block template
             h6#prodcat1=product.category
             h4#prodname1= product.name
             h2#prodprice1= '$'+product.price
-            select
-                option Select Size
-                option 8.25&quot;
-                option 8.375&quot;
-                option 8.5&quot;
-                option 8.75&quot;
-            input(type='number' value='1')
-            .container2
-                button.button(href='#' onclick='')
-                    .button__line
-                    .button__line
-                    span.button__text Add to Cart
-                    .button__drow1
-                    .button__drow2
+                form(action=`/shop/product/${product.id}/addtocart` method='post')
+                    select(type='number' name='size')
+                        option Select Size
+                        option 8.25&quot;
+                        option 8.375&quot;
+                        option 8.5&quot;
+                        option 8.75&quot;
+                    input(type='number' value='1' name='quantity')
+                    button(type="submit").button
+                        .button__line
+                        .button__line
+                        span.button__text Add to Cart
+                        .button__drow1
+                        .button__drow2
+                
             h4 Product Details
             h3=product.description
